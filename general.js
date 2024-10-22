@@ -1,11 +1,16 @@
-
 window.addEventListener('contextmenu', (event) => {
-    alert("dsd");
-  })
+});
 
-  var menu_open = false;
+var menu_open = false;
+var platform = navigator.platform;
+var windowsNavButtons = document.querySelector(".navigation-buttons");
 
-  const more = document.querySelectorAll('.more-button');
+if(platform == "MacIntel"){
+  windowsNavButtons.style.display = "none";
+}
+
+
+const more = document.querySelectorAll('.more-button');
 var more_menu = document.querySelector('.more-menu');
 
 const scrollWrapper = document.querySelector('.scroll-wrapper');
@@ -16,7 +21,9 @@ scrollWrapper.addEventListener("mousemove", (e) => {
   scrollWrapper.style.filter = "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05))";
   webviewsPar.style.height = "calc(100% - 70px)";
   webviewsPar.style.top = "0";
+  ipc.send("trafficLightsChange");
 });
+
 webviewsPar.addEventListener("mousemove", (e) => {
   scrollWrapper.style.top = "-50px";
   scrollWrapper.style.filter = "unset";

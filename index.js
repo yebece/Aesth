@@ -1,4 +1,5 @@
 const { app, screen, ipcMain, BrowserWindow} = require('electron');
+var y1 = 18;
 
 const contextMenu = require('electron-context-menu');
 contextMenu({
@@ -18,7 +19,9 @@ const createWindow = () => {
         minWidth: 800,
         height: height / 1.25,
         minHeight: 400,
-        frame: false,
+        titleBarStyle: 'hidden',
+        titleBarOverlay: true,
+        trafficLightPosition: { x: 10, y: -6 },
         webPreferences: {
             experimentalFeatures: true,
             nodeIntegration: true,
@@ -50,7 +53,5 @@ const createWindow = () => {
 
     window.loadFile('index.html');
 };
-
-
 app.whenReady().then(createWindow)
 app.on('window-all-closed', () => app.quit());
